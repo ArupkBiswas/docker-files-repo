@@ -1,0 +1,29 @@
+# Using version 3.8 for compatibility with modern Docker features and services.
+version: "3.8"
+services:
+  db:
+    image: postgres
+    container_name: postgres_container
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: 12345
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    volumes:
+      - local_pgadmin4_data:/var/lib/pgadmin
+
+volumes:
+  postgres-data:
+  local_pgadmin4_data:

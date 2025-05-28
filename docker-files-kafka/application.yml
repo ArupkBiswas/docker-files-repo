@@ -1,0 +1,14 @@
+akhq:
+  connections:
+    local-kafka:
+      properties:
+        bootstrap.servers: "kafka:9092"
+      schema-registry:
+        url: "http://localhost:8081"
+  topics:
+    default:
+      configs:
+        - name: "cleanup.policy"
+          value: "compact"
+        - name: "retention.ms"
+          value: "604800000"
